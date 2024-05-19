@@ -2,6 +2,18 @@ provider "aws" {
   region = "ap-south-1"
 }
 
+
+resource "aws_instance" "terraform-instance-1" {
+  ami           = "ami-0cc9838aa7ab1dce7"
+  instance_type = "t2.micro"
+  key_name      = "docker-pipeline"
+  tags = {
+    Name  = "myvpc-terraform"
+  }
+  availability_zone = "ap-south-1a"
+}
+
+
 resource "aws_vpc" "terraform-vpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
